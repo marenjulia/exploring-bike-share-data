@@ -3,14 +3,33 @@
 
 Bay Wheels (previously Ford GoBike) is a bike share system in the San Francisco Bay Area. Bay Wheels is operated by Lyft, and provides its bikes in the San Francisco, San Jose, and East Bay area. A docked bike can be checked out 24/7 at any station and must be returned to a Bay Wheels station when the trip is complete. 
 
-## Dataset
+## Dataset and Wrangling Efforts
 
-Bay Wheels trip data is open for public use, and can be downloaded on their [website](https://www.lyft.com/bikes/bay-wheels/system-data). The system data offers information on start and end station location, start and end date and time of the trip, and some additional information on the bike user, and the bike in use. I extracted trip data for January to June 2019 and 2020, and loaded it into a 2019 and a 2020 dataframe. Before starting my exploration, I performed several data wrangling steps. E.g. I used the trip start time to extract month, weekday and hour of the trip, and the latitude and longitude data to add a start city and end city feature to the dataset. Also, I performed several cleaning steps to change datatypes and deal with missing data and outliers. During 2020, some columns were renamed, so I transferred their values from the new column to their respective place in the old column, and then dropped the old column. All wrangling steps are documented in detail in the Assessing and Cleaning steps in the exploration notebook. While exploring the data, I circled back to some more wrangling steps to calculate duration minutes from duration seconds, to add a duration category column, and to recalculate 2020 latitude and longitude data by station based on the station means. 
+Bay Wheels trip data is open for public use, and can be downloaded on their [website](https://www.lyft.com/bikes/bay-wheels/system-data). The system data offers information on start and end station location, start and end date and time of the trip, and some additional information on the bike user, and the bike in use. I extracted trip data for January to June 2019 and 2020, and loaded it into a 2019 and a 2020 dataframe. 
 
+Before starting my exploration, I performed several data wrangling steps. E.g. I used the trip start time to extract month, weekday and hour of the trip, and the latitude and longitude data to add a start city and end city feature to the dataset. Also, I performed several cleaning steps to change datatypes and deal with missing data and outliers. During 2020, some columns were renamed, so I transferred their values from the new column to their respective place in the old column, and then dropped the old column. All wrangling steps are documented in detail in the Assessing and Cleaning steps in the exploration notebook (_Exploring_Bike_Share_Data_Exploration.ipynb_). 
+
+While exploring the data, I circled back to some more wrangling steps to calculate duration minutes from duration seconds, to add a duration category column, and to recalculate 2020 latitude and longitude data by station based on the station means. 
+
+## Resources Used for the Exploration
+
+Libraries used: 
+- Numpy
+- Pandas
+- Matplotlib
+- Seaborn
+
+Resources used: 
+- Bay Wheels System Data: https://www.lyft.com/bikes/bay-wheels/system-data
+- Pandas Documentation: https://pandas.pydata.org/docs/
+- Seaborn Documentation: https://seaborn.pydata.org/
+- Open Street Map: https://www.openstreetmap.org/#map=14/37.7656/-122.3990
+- Blog on how to create simple map visualizations with Open Street Map and Matplotlib: https://towardsdatascience.com/easy-steps-to-plot-geographic-data-on-a-map-python-11217859a2db
+- Stack overflow forum entries: https://stackoverflow.com/questions/45615306/get-top-rows-from-column-value-count-with-pandas, https://stackoverflow.com/questions/30244952/how-do-i-create-a-new-column-from-the-output-of-pandas-groupby-sum
 
 ## Summary of Findings
 
-As expected, there were notable differences in the feature distributions between the 2019 and 2020 dataset. 
+As expected, there were notable differences in the feature distributions between the 2019 and 2020 dataset. The following "summary" is very extensive, a more concise overview of main findings is availaible in _Exploring_Bike_Share_Data_Slides.ipynb_.
 
 In 2019, Bay Wheels bikes seem to be primarily used for commuting to and from work, especially to bridge the "last mile" between commuter hubs like the ferry building, or commuter train and office locations. 
 - The average trip duration was at ca. 13 minutes and 10 seconds. I transformed seconds to minutes and log-transformed the x-axis, still trip duration has a highly right-skewed distribution.
@@ -53,20 +72,4 @@ In 2020, a similar commuter focus was visible. At the same time trip duration, d
 
 For the presentation, I focus on the influence of the time-related variables and user type on the trip duration. I start by introducing the distribution of trip duration, and distribution of the features with the biggest change from 2019 to 2020, month and user type. 
 
-Afterwards, I introduce the influence of month, weekday, hour of the day, and user type on trip duration in 2019 and 2020. I am using violin plots for month, weekday, and user type, and a bar chart for hour of the day. For all violin plot visualizations I focus on a snapshot of trips with a duration below 60 minutes. After asking for feedback on the exploration visualizations, I decided to include a representation of average trip time by month by user type in the presentation. To finish the presentation, I am visualizing a map of trip duration by station location to confirm that the change in trip duration is visible in all three evaluated regions. 
-
-## Resources Used for the Exploration
-
-Libraries used: 
-- Numpy
-- Pandas
-- Matplotlib
-- Seaborn
-
-Resources used: 
-- Bay Wheels System Data: https://www.lyft.com/bikes/bay-wheels/system-data
-- Pandas Documentation: https://pandas.pydata.org/docs/
-- Seaborn Documentation: https://seaborn.pydata.org/
-- Open Street Map: https://www.openstreetmap.org/#map=14/37.7656/-122.3990
-- Blog on how to create simple map visualizations with Open Street Map and Matplotlib: https://towardsdatascience.com/easy-steps-to-plot-geographic-data-on-a-map-python-11217859a2db
-- Stack overflow forum entries: https://stackoverflow.com/questions/45615306/get-top-rows-from-column-value-count-with-pandas, https://stackoverflow.com/questions/30244952/how-do-i-create-a-new-column-from-the-output-of-pandas-groupby-sum
+Afterwards, I introduce the influence of month, weekday, hour of the day, and user type on trip duration in 2019 and 2020. I am using violin plots for month, weekday, and user type, and a bar chart for hour of the day. For all violin plot visualizations I focus on a snapshot of trips with a duration below 60 minutes. After asking for feedback on the exploration visualizations, I decided to include a representation of average trip time by month by user type in the presentation. To finish the presentation, I am visualizing a map of trip duration by station location to confirm that the change in trip duration is visible in all three evaluated regions.
