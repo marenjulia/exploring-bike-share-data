@@ -29,7 +29,7 @@ Resources used:
 
 ## Summary of Findings
 
-As expected, there were notable differences in the feature distributions between the 2019 and 2020 dataset. The following "summary" is very extensive, a more concise overview of main findings is availaible in _Exploring_Bike_Share_Data_Slides.ipynb_.
+As expected, there were notable differences in the feature distributions between the 2019 and 2020 dataset. The following "summary" is very extensive, a more concise overview of key findings is available in _Exploring_Bike_Share_Data_Slides.ipynb_.
 
 In 2019, Bay Wheels bikes seem to be primarily used for commuting to and from work, especially to bridge the "last mile" between commuter hubs like the ferry building, or commuter train and office locations. 
 - The average trip duration was at ca. 13 minutes and 10 seconds. I transformed seconds to minutes and log-transformed the x-axis, still trip duration has a highly right-skewed distribution.
